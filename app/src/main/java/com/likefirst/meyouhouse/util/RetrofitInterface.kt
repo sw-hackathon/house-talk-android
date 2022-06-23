@@ -1,5 +1,7 @@
 package com.likefirst.meyouhouse.util
 
+import com.likefirst.meyouhouse.data.remote.BaseResponse
+import com.likefirst.meyouhouse.data.remote.calendar.response.CalendarResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -23,4 +25,12 @@ interface RetrofitInterface {
 //        @Path("userIdx") userIdx: Int,
 //        @Body isSad : UserIsSad
 //    ) : Call<BaseResponse<String>>
+
+    // ================== Calendar ==================== //
+    @GET("/issue/date")
+    fun getIssuesCalendar(
+        @Query("year")year: String,
+        @Query("month")month: String
+    ) : Call<BaseResponse<CalendarResponse>>
+
 }

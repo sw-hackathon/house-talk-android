@@ -9,20 +9,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.likefirst.meyouhouse.data.dto.calendar.CalendarData
+import com.likefirst.meyouhouse.data.remote.calendar.service.CalendarService
+import com.likefirst.meyouhouse.data.remote.calendar.view.CalendarView
 import com.likefirst.meyouhouse.databinding.ItemCalendarVpBinding
 import com.likefirst.meyouhouse.ui.BaseFragment
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
 
-class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpBinding::inflate) {
+class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpBinding::inflate), CalendarView {
 
+    lateinit var issueDates : ArrayList<Int>
     val pageIndex by lazy {
         requireArguments().getInt("pageIndex")
     }
 
     override fun initAfterBinding() {
         makeDateInfo()
-        makeCalendar()
+        makeCalendar(issueDates)
     }
 
     fun makeDateInfo(){
@@ -46,7 +50,16 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
         }
         binding.itemCalendarMonthTv.text = month.toString() + "월"
         binding.itemCalendarYearTv.text = year.toString()
+
+        loadCalendarDataset(year.toString(), month.toString())
     }
+
+    fun loadCalendarDataset(year:String, month:String){
+        val calendarService = CalendarService()
+        calendarService.setCalendarView(this)
+        calendarService.loadCalendar(year, month)
+    }
+
 
     fun getCalendar() : Date {
         val calendar = Calendar.getInstance()
@@ -80,14 +93,14 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
         return customCalendar.dateList
     }
 
-    fun makeCalendar() {
+    fun makeCalendar(issueDates : ArrayList<Int>) {
         val date = getCalendar()
         val today = if (date != Calendar.getInstance().time){
             "0"
         } else {
             Calendar.getInstance().get(Calendar.DATE).toString()
         }
-        val calendarRVAdapter = CalendarItemRVAdapter(createCalendarList(), requireContext(), today)
+        val calendarRVAdapter = CalendarItemRVAdapter(createCalendarList(), requireContext(), today, issueDates)
         binding.calendarItemRv.apply {
             adapter = calendarRVAdapter
             layoutManager = GridLayoutManager(requireContext(), 7)
@@ -118,5 +131,18 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
 //                }
 //            })
         }
+    }
+
+    override fun onCalendarGetLoading() {
+        Log.d("dk", "loading")
+    }
+
+    override fun onCalendarGetSuccess(dates : ArrayList<Int>) {
+        issueDates = dates
+        Log.d("dk", "success")
+    }
+
+    override fun onCalendarGetFailure(code: Int) {
+        Log.d("dk", "failure")
     }
 }

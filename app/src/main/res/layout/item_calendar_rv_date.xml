@@ -18,4 +18,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
+        <View
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:background="@drawable/callendar_marker_issue"
+            app:layout_constraintTop_toBottomOf="@id/item_calendar_rv_date_tv"
+            app:layout_constraintStart_toStartOf="@id/item_calendar_rv_date_tv"
+            app:layout_constraintEnd_toEndOf="@id/item_calendar_rv_date_tv"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

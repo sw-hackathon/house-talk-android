@@ -19,9 +19,9 @@ class ApplicationClass : Application() {
         const val TAG: String = "MeYou-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val DEV_URL: String = "https://dev.euna.shop";       // 테스트 서버 주소
+        const val DEV_URL: String = "http://3.37.61.91:5000";       // 테스트 서버 주소
         const val PROD_URL: String = "https://prod.euna.shop"    // 실서버 주소
-        const val BASE_URL: String = PROD_URL
+        const val BASE_URL: String = DEV_URL
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var retrofit: Retrofit

@@ -14,8 +14,10 @@ import com.likefirst.meyouhouse.databinding.ItemCalendarEmptyBinding
 import com.likefirst.meyouhouse.databinding.ItemCalendarRvDateBinding
 import java.lang.RuntimeException
 import java.util.*
+import kotlin.collections.ArrayList
 
-class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val context : Context, val today : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val context : Context, val today : String, issueDates : ArrayList<Int>)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val EMPTY_CELL = 0
     private val DATE_CELL = 1

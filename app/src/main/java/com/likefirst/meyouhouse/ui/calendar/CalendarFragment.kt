@@ -3,6 +3,8 @@ package com.likefirst.meyouhouse.ui.calendar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.likefirst.meyouhouse.R
+import com.likefirst.meyouhouse.data.remote.calendar.service.CalendarService
+import com.likefirst.meyouhouse.data.remote.calendar.view.CalendarView
 import com.likefirst.meyouhouse.databinding.FragmentCalendarBinding
 import com.likefirst.meyouhouse.ui.BaseFragment
 import java.util.*
