@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_header"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosanskr_medium"
             android:includeFontPadding="false"
-            android:text="방코드입력"
+            android:text="건물등록"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/notosanskr_bold"
         android:gravity="left"
         android:includeFontPadding="false"
-        android:text="방코드를\n불러와주세요."
+        android:text="건물 이름을\n입력해주세요."
         android:textColor="@color/house_talk_black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
         android:fontFamily="@font/notosanskr_regular"
         android:gravity="left"
         android:includeFontPadding="false"
-        android:text="임대인에게 공유받은\n방코드를 입력해 시작해 보세요."
+        android:text="코드생성을 위해\n건물이름이 필요합니다."
         android:textColor="@color/house_talk_gray"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -79,14 +79,14 @@
         android:layout_marginTop="83dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:text="코드입력"
+        android:text="건물 이름 입력"
         android:textColor="@color/house_talk_gray"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
 
     <EditText
-        android:id="@+id/et_code"
+        android:id="@+id/et_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -100,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_input"
-        tools:text="103056" />
+        tools:text="광명빌라" />
 
     <View
         android:layout_width="0dp"
@@ -109,7 +109,7 @@
         android:background="@color/house_talk_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_code" />
+        app:layout_constraintTop_toBottomOf="@id/et_input" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

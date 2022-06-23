@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_host_onboarding"
+    app:startDestination="@id/hostOnboardingFragment1">
+
+    <fragment
+        android:id="@+id/hostOnboardingFragment1"
+        android:name="com.likefirst.meyouhouse.ui.onboarding.host.HostOnboardingFragment1"
+        android:label="HostOnboardingFragment1" >
+        <action
+            android:id="@+id/action_hostOnboardingFragment1_to_hostOnboardingFragment2"
+            app:destination="@id/hostOnboardingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/hostOnboardingFragment2"
+        android:name="com.likefirst.meyouhouse.ui.onboarding.host.HostOnboardingFragment2"
+        android:label="HostOnboardingFragment2" />
+</navigation>

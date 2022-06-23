@@ -3,12 +3,17 @@
     package="com.likefirst.meyouhouse">
 
     <application
+        android:name=".util.ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MeYouHouse">
+        android:theme="@style/Theme.MeYouHouse"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.onboarding.host.HostOnboardingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.onboarding.client.ClientOnboardingActivity"
             android:exported="false" />

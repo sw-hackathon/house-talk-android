@@ -20,7 +20,7 @@ class ApplicationClass : Application() {
         const val APP_DATABASE = "$TAG-DB"
 
         const val DEV_URL: String = "https://dev.euna.shop";       // 테스트 서버 주소
-        const val PROD_URL: String = "https://prod.euna.shop"    // 실서버 주소
+        const val PROD_URL: String = "http://3.37.61.91:5000"    // 실서버 주소
         const val BASE_URL: String = PROD_URL
 
         lateinit var mSharedPreferences: SharedPreferences

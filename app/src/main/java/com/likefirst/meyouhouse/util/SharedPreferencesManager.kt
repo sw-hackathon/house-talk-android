@@ -9,6 +9,12 @@ fun saveJwt(jwtToken: String) {
     editor.apply()
 }
 
+fun saveRoom(room: String) {
+    val editor = mSharedPreferences.edit()
+    editor.putString("room", room)
+    editor.apply()
+}
+
 fun getJwt(): String? = mSharedPreferences.getString("jwt", null)
 
 fun removeJwt(){

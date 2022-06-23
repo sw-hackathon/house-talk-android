@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_header"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosanskr_medium"
             android:includeFontPadding="false"
-            android:text="방코드입력"
+            android:text="건물등록"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/notosanskr_bold"
         android:gravity="left"
         android:includeFontPadding="false"
-        android:text="방코드를\n불러와주세요."
+        android:text="건물 이름을\n입력해주세요."
         android:textColor="@color/house_talk_black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,51 +66,42 @@
         android:fontFamily="@font/notosanskr_regular"
         android:gravity="left"
         android:includeFontPadding="false"
-        android:text="임대인에게 공유받은\n방코드를 입력해 시작해 보세요."
+        android:text="코드를 복사해\n임차인에게 공유해주세요."
         android:textColor="@color/house_talk_gray"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
-
-    <TextView
-        android:id="@+id/tv_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
-        android:fontFamily="@font/notosanskr_regular"
-        android:includeFontPadding="false"
-        android:text="코드입력"
-        android:textColor="@color/house_talk_gray"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@id/tv_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
-
-    <EditText
-        android:id="@+id/et_code"
+    
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:background="#00000000"
-        android:fontFamily="@font/notosanskr_bold"
-        android:gravity="center"
-        android:includeFontPadding="false"
+        android:layout_height="0dp"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@id/btn_copy"
+        tools:text="123456"
         android:textColor="@color/house_talk_black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_copy"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_input"
-        tools:text="103056" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="@color/house_talk_black"
+        app:layout_constraintEnd_toStartOf="@id/btn_copy"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="30dp"
+        android:includeFontPadding="false"
+        android:background="@drawable/shape_bg_empty_btn"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_copy"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_bg_blue_btn"
+        android:fontFamily="@font/notosanskr_regular"
+        android:text="복사"
+        android:textColor="@color/white"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_code" />
-
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_previous"
