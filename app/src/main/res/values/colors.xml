@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="calendar_red">#ff3d58</color>
     <color name="gray">#747474</color>
-    <color name="bg">#ECECEC</color>
+    <color name="bg">#F8F9FA</color>
     <color name="calendar_blue">#556fff</color>
 
 </resources>

@@ -22,7 +22,6 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(FragmentCalendarB
 
     fun initCalendar(){
         mCalendar.time = Date()
-        val monthNames: Array<String> = resources.getStringArray(R.array.month)
 
         val calendarAdapter = CalendarVPAdapter(this)
         binding.calendarVp.apply {
@@ -30,14 +29,14 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(FragmentCalendarB
             overScrollMode = RecyclerView.OVER_SCROLL_NEVER
             offscreenPageLimit = 1
             setCurrentItem(Int.MAX_VALUE/2, false)
-//            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//                override fun onPageSelected(position: Int) {
-//
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+
 //                    //pageIndex 설정 (현재 달을 기준값 0으로 잡음)
 //                    val centerPosition = Int.MAX_VALUE/2
 //                    pageIndex = position - centerPosition
-
-                    //현재 표시되는 달 텍스트 변환
+//
+//                    현재 표시되는 달 텍스트 변환
 //                    if(MONTH_TODAY + pageIndex >= 0){
 //                        val monthIndex = (MONTH_TODAY + pageIndex) % 12
 //                        val year = (MONTH_TODAY + pageIndex) / 12 + YEAR_TODAY
@@ -54,9 +53,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(FragmentCalendarB
 //                        }
 //                        binding.archiveCalendarYearTv.text = year.toString()
 //                    }
-//                    super.onPageSelected(position)
-//                }
-//            })
+                    super.onPageSelected(position)
+                }
+            })
         }
     }
 }

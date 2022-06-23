@@ -1,18 +1,17 @@
 package com.likefirst.meyouhouse.ui.calendar
 
-import android.content.ClipData
 import android.content.Context
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.RecyclerView
 import com.likefirst.meyouhouse.R
 import com.likefirst.meyouhouse.data.dto.calendar.CalendarData
 import com.likefirst.meyouhouse.databinding.ItemCalendarEmptyBinding
 import com.likefirst.meyouhouse.databinding.ItemCalendarRvDateBinding
 import java.lang.RuntimeException
-import java.time.LocalDate
 import java.util.*
 
 class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val context : Context, val today : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -20,6 +19,8 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
     private val EMPTY_CELL = 0
     private val DATE_CELL = 1
     private lateinit var date : Date
+    private var selectedItem = SparseBooleanArray()
+    private var preposition = -1
 
     inner class DateViewHolder(val binding : ItemCalendarRvDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun initView(position: Int) {
@@ -28,15 +29,19 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
                 val calendarRed = ContextCompat.getColor(context, R.color.calendar_red)
                 binding.itemCalendarRvDateTv.setTextColor(calendarRed)
             } else if (position % 7 == 6) {
-                val calendarGray = ContextCompat.getColor(context, R.color.calendar_blue)
-                binding.itemCalendarRvDateTv.setTextColor(calendarGray)
+                val calendarBlue = ContextCompat.getColor(context, R.color.calendar_blue)
+                binding.itemCalendarRvDateTv.setTextColor(calendarBlue)
             }
             if (today == calendarList[position].dateInt.toString()) {
                 val calendarWhite = ContextCompat.getColor(context, R.color.white)
                 binding.itemCalendarRvDateTv.apply {
                     setTextColor(calendarWhite)
-                    background = ContextCompat.getDrawable(context, R.drawable.today_marker)
+                    background = ContextCompat.getDrawable(context, R.drawable.callendar_marker_today)
                 }
+            } else if(selectedItem.get(position)){
+                binding.itemCalendarRvDateTv.background = ContextCompat.getDrawable(context, R.drawable.callendar_marker_current)
+            } else {
+                binding.itemCalendarRvDateTv.background = null
             }
         }
     }
@@ -76,6 +81,15 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
             }
             is CalendarItemRVAdapter.DateViewHolder -> {
                 holder.initView(position)
+                holder.itemView.setOnClickListener {
+                    if (!selectedItem.get(position)){
+                        selectedItem.clear()
+                        selectedItem.put(position, true)
+                        if (preposition != -1) notifyItemChanged(preposition)
+                        notifyItemChanged(position)
+                        preposition = position
+                    }
+                }
             }
         }
     }
