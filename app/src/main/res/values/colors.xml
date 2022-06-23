@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="house_talk_black">#222222</color>
+    <color name="house_talk_gray">#717171</color>
+    <color name="main_color">#556fff</color>
+    <color name="light_gray">#f8f9fa</color>
+    <color name="medium_gray">#acacac</color>
+    <color name="border_gray">#e5e5e5</color>
+    <color name="background">#F8F9FA</color>
 </resources>
