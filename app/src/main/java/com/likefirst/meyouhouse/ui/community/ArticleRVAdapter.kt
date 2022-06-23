@@ -10,16 +10,18 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.likefirst.meyouhouse.data.dto.community.Article
 import com.likefirst.meyouhouse.databinding.ItemCommunityRvBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ArticleRVAdapter(val Articles : MutableList<Article>, private val viewOnClickListener : ()->Unit) : RecyclerView.Adapter<ArticleRVAdapter.ViewHolder>() {
+class ArticleRVAdapter(val Articles : MutableList<Article>, private val viewOnClickListener : (Int,String)->Unit) : RecyclerView.Adapter<ArticleRVAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemCommunityRvBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article : Article) {
-            binding.articleBodyTextView.text = article.body
-            binding.communityDate.text = article.date
-            binding.commentCountTextView.text = article.commentCount.toString()
+            binding.articleBodyTextView.text = article.content
+            binding.communityDate.text = article.createdAt
+            binding.commentCountTextView.text = article.commentCnt.toString()
             binding.root.setOnClickListener {
-                viewOnClickListener()
+                viewOnClickListener(article.postId,article.createdAt)
             }
         }
     }
@@ -35,6 +37,7 @@ class ArticleRVAdapter(val Articles : MutableList<Article>, private val viewOnCl
     override fun getItemCount(): Int {
         return Articles.size
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list : MutableList<Article>){

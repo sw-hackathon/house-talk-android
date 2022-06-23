@@ -13,8 +13,8 @@ class CommentRVAdapter(val Comments : MutableList<Comment>) : RecyclerView.Adapt
 
     inner class ViewHolder(private val binding: ItemCommentRvBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(comment : Comment) {
-            binding.commentBodyTextView.text = comment.body
-            binding.commentDetailDate.text = comment.date
+            binding.commentBodyTextView.text = comment.content
+            binding.commentDetailDate.text = comment.createdAt
         }
     }
 

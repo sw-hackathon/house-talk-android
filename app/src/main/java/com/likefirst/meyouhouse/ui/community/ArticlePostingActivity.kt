@@ -37,7 +37,7 @@ class ArticlePostingActivity :
                 putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
                 type = "image/*"
             }
-            startActivityForResult(intent, READ_REQUEST_CODE) // 4
+            startActivityForResult(intent, READ_REQUEST_CODE)
         }
     }
 
@@ -85,7 +85,10 @@ class ArticlePostingActivity :
     private fun initSubmitButton() {
         //TODO 서버에 이미지 업로드
         binding.submitTextButton.setOnClickListener {
-            showToast("버튼클릭")
+            //TODO 글내용 + 이미지 보내기
+            val userId = 2
+            val homeId = 1
+            val content = binding.bodyEditText.text.toString()
         }
     }
 

@@ -9,14 +9,14 @@ import com.bumptech.glide.Glide
 import com.likefirst.meyouhouse.data.dto.community.DetailImage
 import com.likefirst.meyouhouse.databinding.ItemDetailImageRvBinding
 
-class DetailImageRVAdapter (private val Images : MutableList<DetailImage>) : RecyclerView.Adapter<DetailImageRVAdapter.ViewHolder>() {
+class DetailImageRVAdapter (private val Images : MutableList<String>) : RecyclerView.Adapter<DetailImageRVAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemDetailImageRvBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(Image: DetailImage) {
+        fun bind(Image: String) {
             Glide.with(binding.detailImageView.context)
-                .load(Image.url)
+                .load(Image)
                 .into(binding.detailImageView)
-            Log.d("Adapter",Image.url)
+            Log.d("Adapter",Image)
         }
     }
 
@@ -33,7 +33,7 @@ class DetailImageRVAdapter (private val Images : MutableList<DetailImage>) : Rec
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list : MutableList<DetailImage>){
+    fun setData(list : MutableList<String>){
         Images.clear()
         Images.addAll(list)
         notifyDataSetChanged()

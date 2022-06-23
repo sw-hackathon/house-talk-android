@@ -11,7 +11,7 @@ class XAccessTokenInterceptor: Interceptor {
 
         // TODO
         //  null 대신에 getUser() sharedPreferencesManager에 정의해서 사용해야 합니다
-        val jwtToken: String? = null
+        val jwtToken: String? = null //or host or
 
         jwtToken?.let{
             builder.addHeader(X_ACCESS_TOKEN, jwtToken)
