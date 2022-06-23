@@ -14,20 +14,23 @@ import com.likefirst.meyouhouse.util.getJwt
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     override fun initAfterBinding() {
         if (!isOnboardingActivated) {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
+            Intent(this, MainActivity::class.java).apply {
+                startActivity(this)
+                finish()
             }
         }
 
         binding.btnClient.setOnClickListener {
-            Intent(this, ClientOnboardingActivity::class.java).also {
-                startActivity(it)
+            Intent(this, ClientOnboardingActivity::class.java).apply {
+                startActivity(this)
+                finish()
             }
         }
 
         binding.btnHost.setOnClickListener {
-            Intent(this, HostOnboardingActivity::class.java).also {
-                startActivity(it)
+            Intent(this, HostOnboardingActivity::class.java).apply {
+                startActivity(this)
+                finish()
             }
         }
     }

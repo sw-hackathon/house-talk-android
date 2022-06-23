@@ -1,8 +1,12 @@
 package com.likefirst.meyouhouse.data.remote.auth
 
-data class GetHomeByCodeResponse(
+data class PostHomeResponse(
+    val home: Home
+)
+
+data class Home(
     val id: Int,
-    val host_id: String,
     val name: String,
+    val host_id: Int,
     val code: String
 )

@@ -15,6 +15,8 @@ import com.likefirst.meyouhouse.ui.BaseFragment
 import com.likefirst.meyouhouse.util.ApplicationClass
 import com.likefirst.meyouhouse.util.RetrofitInterface
 import com.likefirst.meyouhouse.util.enqueueUtil
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ClientOnboardingFragment1 :
     BaseFragment<FragmentClientOnboarding1Binding>(FragmentClientOnboarding1Binding::inflate) {
@@ -22,22 +24,34 @@ class ClientOnboardingFragment1 :
         with(binding) {
             btnNext.setOnClickListener {
                 if (isNextBtnValid) {
-                    findNavController().navigate(R.id.action_clientOnboardingFragment1_to_clientOnboardingFragment2)
-//                    val code = binding.etCode.text.toString()
-//                    ApplicationClass.retrofit.create(RetrofitInterface::class.java)
-//                        .getHomeByCode(code).apply {
-//                        enqueueUtil(
-//                            onSuccess = {
-//                                val home = it?.name
-//                                val action = ClientOnboardingFragment1Directions.actionClientOnboardingFragment1ToClientOnboardingFragment2(home)
-//                                findNavController().navigate(action)
-//                            },
-//                            onError = {
-//                                Toast.makeText(requireContext(), "잘못된 코드입니다.", Toast.LENGTH_SHORT)
-//                                    .show()
-//                            }
-//                        )
-//                    }
+                    val code = binding.etCode.text.toString()
+                    ApplicationClass.retrofit.create(RetrofitInterface::class.java)
+                        .getHomeByCode(code).apply {
+                            enqueueUtil(
+                                onSuccess = {
+                                    val home = it?.data?.name
+                                    if(home.isNullOrBlank()) {
+                                        Toast.makeText(requireContext(), "잘못된 코드입니다.", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        val action =
+                                            ClientOnboardingFragment1Directions.actionClientOnboardingFragment1ToClientOnboardingFragment2(
+                                                home
+                                            )
+                                        findNavController().navigate(action)
+                                    }
+                                },
+                                onError = {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "서버 통신 오류",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
+                            )
+                        }
+                } else {
+                    Toast.makeText(requireContext(), "코드를 입력해주세요!", Toast.LENGTH_SHORT).show()
                 }
             }
             clPrevious.setOnClickListener {
