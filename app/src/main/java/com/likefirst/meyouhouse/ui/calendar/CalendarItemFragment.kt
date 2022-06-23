@@ -47,8 +47,7 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
                 month = monthIndex+1
             }
         }
-        binding.itemCalendarMonthTv.text = month.toString() + "월"
-        binding.itemCalendarYearTv.text = year.toString()
+        binding.itemCalendarMonthTv.text = "$year.$month"
 
         Log.d("month", month.toString())
         loadCalendarDataset(year.toString(), month.toString())
