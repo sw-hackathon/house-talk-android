@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="house_talk_black">#222222</color>
     <color name="house_talk_gray">#717171</color>
+    <color name="font_gray">#626262</color>
     <color name="main_color">#556fff</color>
     <color name="light_gray">#f8f9fa</color>
     <color name="medium_gray">#acacac</color>
