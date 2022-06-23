@@ -1,6 +1,7 @@
 package com.likefirst.meyouhouse.ui.calendar
 
 import android.content.Context
+import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
     inner class DateViewHolder(val binding : ItemCalendarRvDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun initView(position: Int) {
             binding.itemCalendarRvDateTv.text = calendarList[position].dateInt.toString()
+            Log.d("position : ", position.toString())
             if (position % 7 == 0) {
                 val calendarRed = ContextCompat.getColor(context, R.color.calendar_red)
                 binding.itemCalendarRvDateTv.setTextColor(calendarRed)
@@ -88,6 +90,7 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
                         if (preposition != -1) notifyItemChanged(preposition)
                         notifyItemChanged(position)
                         preposition = position
+                        Log.d("preposition", preposition.toString())
                     }
                 }
             }

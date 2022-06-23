@@ -11,17 +11,17 @@
         android:title="홈"/>
     <item
         android:id="@+id/calendarFragment"
-        android:icon="@drawable/bottom_nav_menu_archive_selector"
+        android:icon="@drawable/bottom_nav_menu_calendar_selector"
         app:showAsAction="always"
         android:title="달력"/>
     <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/bottom_nav_menu_history_selector"
+        android:icon="@drawable/bottom_nav_menu_search_selector"
         app:showAsAction="always"
         android:title="평점"/>
     <item
         android:id="@+id/communityFragment"
-        android:icon="@drawable/bottom_nav_menu_profile_selector"
+        android:icon="@drawable/bottom_nav_menu_community_selector"
         app:showAsAction="always"
         android:title="게시판"/>
 </menu>
