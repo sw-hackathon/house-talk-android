@@ -15,11 +15,11 @@ import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
     companion object{
-        const val X_ACCESS_TOKEN: String = "x-access-token"         // JWT Token Key
+        const val X_ACCESS_TOKEN: String = "Authorization"         // JWT Token Key
         const val TAG: String = "MeYou-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val DEV_URL: String = "http://3.37.61.91:5000";       // 테스트 서버 주소
+        const val DEV_URL: String = "http://54.180.24.205";       // 테스트 서버 주소
         const val PROD_URL: String = "https://prod.euna.shop"    // 실서버 주소
         const val BASE_URL: String = DEV_URL
 

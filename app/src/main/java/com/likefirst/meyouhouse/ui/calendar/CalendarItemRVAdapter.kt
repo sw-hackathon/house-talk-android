@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.selection.SelectionTracker
@@ -16,7 +17,7 @@ import java.lang.RuntimeException
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val context : Context, val today : String, issueDates : ArrayList<Int>)
+class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val context : Context, val today : String)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val EMPTY_CELL = 0
@@ -28,7 +29,6 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
     inner class DateViewHolder(val binding : ItemCalendarRvDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun initView(position: Int) {
             binding.itemCalendarRvDateTv.text = calendarList[position].dateInt.toString()
-            Log.d("position : ", position.toString())
             if (position % 7 == 0) {
                 val calendarRed = ContextCompat.getColor(context, R.color.calendar_red)
                 binding.itemCalendarRvDateTv.setTextColor(calendarRed)
@@ -46,6 +46,9 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
                 binding.itemCalendarRvDateTv.background = ContextCompat.getDrawable(context, R.drawable.callendar_marker_current)
             } else {
                 binding.itemCalendarRvDateTv.background = null
+            }
+            if (calendarList[position].issue){
+                binding.itemCalendarRvIssueMarker.visibility = View.VISIBLE
             }
         }
     }
@@ -105,5 +108,9 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
 
     fun setDate(date : Date){
         this.date = date
+    }
+
+    fun setIssueMark(date : Int){
+
     }
 }

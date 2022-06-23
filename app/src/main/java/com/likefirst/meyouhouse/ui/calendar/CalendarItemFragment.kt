@@ -26,7 +26,6 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
 
     override fun initAfterBinding() {
         makeDateInfo()
-        makeCalendar(issueDates)
     }
 
     fun makeDateInfo(){
@@ -51,6 +50,7 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
         binding.itemCalendarMonthTv.text = month.toString() + "월"
         binding.itemCalendarYearTv.text = year.toString()
 
+        Log.d("month", month.toString())
         loadCalendarDataset(year.toString(), month.toString())
     }
 
@@ -87,20 +87,20 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
         }
     }
 
-    fun createCalendarList() : ArrayList<CalendarData> {
-        val customCalendar = CustomCalendar(getCalendar())
+    fun createCalendarList(issueList : ArrayList<Int>) : ArrayList<CalendarData> {
+        val customCalendar = CustomCalendar(getCalendar(), issueList)
         customCalendar.initBaseCalendar()
         return customCalendar.dateList
     }
 
-    fun makeCalendar(issueDates : ArrayList<Int>) {
+    fun makeCalendar() {
         val date = getCalendar()
         val today = if (date != Calendar.getInstance().time){
             "0"
         } else {
             Calendar.getInstance().get(Calendar.DATE).toString()
         }
-        val calendarRVAdapter = CalendarItemRVAdapter(createCalendarList(), requireContext(), today, issueDates)
+        val calendarRVAdapter = CalendarItemRVAdapter(createCalendarList(issueDates), requireContext(), today)
         binding.calendarItemRv.apply {
             adapter = calendarRVAdapter
             layoutManager = GridLayoutManager(requireContext(), 7)
@@ -134,15 +134,13 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
     }
 
     override fun onCalendarGetLoading() {
-        Log.d("dk", "loading")
     }
 
     override fun onCalendarGetSuccess(dates : ArrayList<Int>) {
         issueDates = dates
-        Log.d("dk", "success")
+        makeCalendar()
     }
 
     override fun onCalendarGetFailure(code: Int) {
-        Log.d("dk", "failure")
     }
 }

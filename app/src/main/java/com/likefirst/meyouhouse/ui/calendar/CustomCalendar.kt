@@ -4,7 +4,7 @@ import com.likefirst.meyouhouse.data.dto.calendar.CalendarData
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CustomCalendar(date : Date) {
+class CustomCalendar(date : Date, val issueList : ArrayList<Int>) {
 
     companion object {
         const val DAYS_OF_WEEK = 7
@@ -45,7 +45,7 @@ class CustomCalendar(date : Date) {
         nextHead = LOW_OF_CALENDAR * DAYS_OF_WEEK - (prevTail + currentMaxDate)
         makeNextHead()
 
-        insertDiaryInfo()
+        insertIssueInfo()
     }
 
     private fun makePrevTail(calendar: Calendar) {
@@ -67,14 +67,10 @@ class CustomCalendar(date : Date) {
 //        for (i in 1..nextHead) dateList.add(date++)
         for (i in 1..nextHead) dateList.add(CalendarData(0))    }
 
-    private fun insertDiaryInfo(){
-//        for (inputData in inputDataList){
-//            val dateString = inputData.diaryDate!!
-//            val date = stringToDate(dateString)
-//            calendar.time = date
-//            val position = dateList.indexOf(ArchiveCalendar(null, null, calendar.get(Calendar.DAY_OF_MONTH), null, null))
-//            dateList[position] = ArchiveCalendar(inputData.diaryDate, inputData.diaryIdx, calendar.get(
-//                Calendar.DAY_OF_MONTH), inputData.doneListNum, inputData.emotionIdx)
-//        }
+    private fun insertIssueInfo(){
+        for (date in issueList){
+            val position = dateList.indexOf(CalendarData(date))
+            dateList[position].issue = true
+        }
     }
 }

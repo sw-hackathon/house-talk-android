@@ -16,3 +16,31 @@ import com.likefirst.meyouhouse.util.ApplicationClass.Companion.mSharedPreferenc
 //    editor.remove("jwt")
 //    editor.commit()
 //}
+
+fun saveClient(){
+    val editor = mSharedPreferences.edit()
+    editor.putString("Authorization_client", "client")
+    editor.apply()
+}
+
+fun getClient() : String? = mSharedPreferences.getString("Authorization_client", "client")
+
+fun removeClient(){
+    val editor = mSharedPreferences.edit()
+    editor.remove("Authorization_client")
+    editor.commit()
+}
+
+fun saveHost(){
+    val editor = mSharedPreferences.edit()
+    editor.putString("Authorization_host", "host")
+    editor.apply()
+}
+
+fun getHost() : String? = mSharedPreferences.getString("Authorization_host", "host")
+
+fun removeHost(){
+    val editor = mSharedPreferences.edit()
+    editor.remove("Authorization_host")
+    editor.commit()
+}
