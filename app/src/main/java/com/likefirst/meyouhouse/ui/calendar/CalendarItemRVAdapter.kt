@@ -66,6 +66,18 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
             DATE_CELL
         }
     }
+
+    interface CalendarDateSelectedListener{
+        // 빈 날짜칸 선택 리스너 -> DiaryActivity
+        fun onDateSelectedListener(date : Date, dayInt: Int)
+    }
+
+    private lateinit var mCalendarDateSelectedListener: CalendarDateSelectedListener
+
+    fun setOnDateSelectedListener(calendarDateSelectedListener: CalendarDateSelectedListener){
+        mCalendarDateSelectedListener = calendarDateSelectedListener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
             EMPTY_CELL -> {
@@ -89,6 +101,7 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
             is CalendarItemRVAdapter.DateViewHolder -> {
                 holder.initView(position)
                 holder.itemView.setOnClickListener {
+                    mCalendarDateSelectedListener.onDateSelectedListener(date, calendarList[position].dateInt)
                     if (!selectedItem.get(position)){
                         selectedItem.clear()
                         selectedItem.put(position, true)
@@ -108,9 +121,5 @@ class CalendarItemRVAdapter(val calendarList : ArrayList<CalendarData>, val cont
 
     fun setDate(date : Date){
         this.date = date
-    }
-
-    fun setIssueMark(date : Int){
-
     }
 }

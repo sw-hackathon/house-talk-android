@@ -5,6 +5,8 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer;
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -19,12 +21,15 @@ import kotlin.collections.ArrayList
 
 class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpBinding::inflate), CalendarView {
 
+    val model: DateViewModel by viewModels({requireParentFragment()})
     lateinit var issueDates : ArrayList<Int>
+
     val pageIndex by lazy {
         requireArguments().getInt("pageIndex")
     }
 
     override fun initAfterBinding() {
+
         makeDateInfo()
     }
 
@@ -105,15 +110,15 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
             layoutManager = GridLayoutManager(requireContext(), 7)
             calendarRVAdapter.setDate(date)
             overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-//            calendarRVAdapter.setOnDateSelectedListener(object : ArchiveCalendarRVAdapter.CalendarDateSelectedListener {
-//                override fun onDateSelectedListener(date: Date, dayInt : Int) {
-//                    val calendar = GregorianCalendar.getInstance()
-//                    calendar.time = date
-//                    calendar.set(Calendar.DAY_OF_MONTH, dayInt)
-//
-//                    // 오늘 날짜랑 비교 (1. calendar = GregorianCalendar.getInstance() : 0
-//                    //                   2. calendar > GregorianCalendar.getInstance() : 1
-//                    //                   3. calendar < GregorianCalendar.getInstance() : -1)
+            calendarRVAdapter.setOnDateSelectedListener(object : CalendarItemRVAdapter.CalendarDateSelectedListener {
+                override fun onDateSelectedListener(date: Date, dayInt : Int) {
+                    val month = date.month + 1
+                    val year = date.year + 1900
+                    model.date.value = arrayListOf("$year","$month","$dayInt")
+
+                    // 오늘 날짜랑 비교 (1. calendar = GregorianCalendar.getInstance() : 0
+                    //                   2. calendar > GregorianCalendar.getInstance() : 1
+                    //                   3. calendar < GregorianCalendar.getInstance() : -1)
 //                    if(calendar.compareTo(GregorianCalendar.getInstance()) == 1){
 //                        Snackbar.make(view!!, "미래의 일기는 작성할 수 없어요!!!", Snackbar.LENGTH_SHORT).show()
 //                    } else {
@@ -122,13 +127,8 @@ class CalendarItemFragment : BaseFragment<ItemCalendarVpBinding>(ItemCalendarVpB
 //                        intent.putExtra("diaryDate", dateString)
 //                        startActivity(intent)
 //                    }
-//                }
-//                override fun onDiarySelectedListener(diaryIdx: Int) {
-//                    val service = ArchiveDiaryService()
-//                    service.setArchiveCalendarView(this@ArchiveCalendarItemFragment)
-//                    service.getDiary(diaryIdx)
-//                }
-//            })
+                }
+            })
         }
     }
 

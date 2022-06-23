@@ -7,6 +7,7 @@ import com.likefirst.meyouhouse.data.dto.community.PostCommentResult
 import okhttp3.ResponseBody
 import com.likefirst.meyouhouse.data.remote.BaseResponse
 import com.likefirst.meyouhouse.data.remote.calendar.response.CalendarResponse
+import com.likefirst.meyouhouse.data.remote.calendar.response.IssueResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -38,6 +39,10 @@ interface RetrofitInterface {
         @Query("month")month: String
     ) : Call<BaseResponse<CalendarResponse>>
 
+    @GET("/issue")
+    fun getIssueList(
+        @Query("date")date: String
+    ) : Call<BaseResponse<IssueResponse>>
 
     //Community main
     @GET("api/community/home/1")
