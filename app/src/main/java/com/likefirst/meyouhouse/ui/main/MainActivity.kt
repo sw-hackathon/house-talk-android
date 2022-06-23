@@ -12,6 +12,15 @@ import com.likefirst.meyouhouse.ui.search.SearchFragment
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     override fun initAfterBinding() {
+
+        // 초기 시작시 홈화면 자동 로딩
+        supportFragmentManager.popBackStack("homeFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, HomeFragment())
+            .addToBackStack("homeFragment")
+            .commitAllowingStateLoss()
+
+
         // 바텀 네비게이션 뷰
         binding.mainBnv.setOnItemSelectedListener {
             when (it.itemId) {

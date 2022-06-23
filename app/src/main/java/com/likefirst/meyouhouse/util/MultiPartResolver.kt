@@ -12,11 +12,12 @@ import okhttp3.RequestBody
 import java.io.File
 
 class MultiPartResolver {
-    fun createImgMultiPart(uri: Uri, context: Context): MultipartBody.Part {
+    fun createImgMultiPart(uri: Uri,filename : String, context: Context): MultipartBody.Part {
         val file = File((getPath(context, uri).toString()))
-        // RequestBody.create(MediaType.parse("image/*"), file) -> 수정
+//         RequestBody.create(MediaType.parse("image/*"), file) -> 수정
+//        val surveyBody = RequestBody.create(MediaType.parse("image/*"), file)
         val surveyBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        return MultipartBody.Part.createFormData("image", file.name, surveyBody)
+        return MultipartBody.Part.createFormData(filename, file.name, surveyBody)
     }
 
     private fun getPath(context: Context, uri: Uri): String? {

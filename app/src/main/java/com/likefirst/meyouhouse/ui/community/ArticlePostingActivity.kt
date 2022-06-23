@@ -1,27 +1,38 @@
 package com.likefirst.meyouhouse.ui.community
 
-import android.content.ClipData
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
-import com.likefirst.meyouhouse.databinding.ActivityArticlePostingBinding
-import com.likefirst.meyouhouse.databinding.FragmentCommunityBinding
-import com.likefirst.meyouhouse.ui.BaseActivity
-import com.likefirst.meyouhouse.ui.BaseFragment
-import android.graphics.BitmapFactory
-
-import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.likefirst.meyouhouse.data.dto.community.SelectedImage
-import java.io.FileNotFoundException
+import com.likefirst.meyouhouse.databinding.ActivityArticlePostingBinding
+import com.likefirst.meyouhouse.ui.BaseActivity
+import com.likefirst.meyouhouse.util.MultiPartResolver
+import com.likefirst.meyouhouse.util.RetrofitInterface
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
 
 class ArticlePostingActivity :
     BaseActivity<ActivityArticlePostingBinding>(ActivityArticlePostingBinding::inflate) {
+
+    lateinit var retrofit: Retrofit
+    lateinit var retrofitService : RetrofitInterface
+
     override fun initAfterBinding() {
         initSelectedImageRV()
         initPhotoButton()
+        initRetroFit()
         initSubmitButton()
         initCancelButton()
     }
@@ -82,21 +93,47 @@ class ArticlePostingActivity :
         binding.selectedPhotoRecyclerView.adapter = selectedImageAdapter
     }
 
-    private fun initSubmitButton() {
-        //TODO 서버에 이미지 업로드
-        binding.submitTextButton.setOnClickListener {
-            //TODO 글내용 + 이미지 보내기
-            val userId = 2
-            val homeId = 1
-            val content = binding.bodyEditText.text.toString()
-        }
-    }
-
     private fun initCancelButton() {
         binding.cancelTextButton.setOnClickListener {
             selectedImageList.clear()
             finish()
         }
+    }
+
+    private fun initRetroFit() {
+        retrofit = Retrofit.Builder()
+            .baseUrl(CommunityFragment.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        retrofitService = retrofit.create(RetrofitInterface::class.java)
+    }
+
+    private fun initSubmitButton() {
+        binding.submitTextButton.setOnClickListener {
+            showToast("등록")
+            val userId = 1
+            val homeId = 1
+            val content = binding.bodyEditText.text.toString()
+            val files = arrayListOf<MultipartBody.Part>()
+            selectedImageList.forEachIndexed { index, selectedImage ->
+                val file = File(selectedImage.uri.path)
+
+            }
+            val fUserId = FormDataUtil.getBody("userId",userId)
+            val fHomeId = FormDataUtil.getBody("homeId",userId)
+            val fContent = FormDataUtil.getBody("content",userId)
+        }
+    }
+
+    //핸드폰 갤러리에 있는 사진의 uri 를 통해 경로를 얻는 것.
+    @SuppressLint("Range")
+    fun getPathFromUri(uri: Uri): String {
+        val cursor = contentResolver.query(uri, null, null, null, null)
+        cursor!!.moveToNext()
+        val path = cursor.getString(cursor!!.getColumnIndex("_data"))
+        cursor.close()
+
+        return path
     }
 
     override fun onDestroy() {
@@ -109,5 +146,28 @@ class ArticlePostingActivity :
     companion object {
         const val READ_REQUEST_CODE = 1000
         const val TAG = "ArticlePostAv"
+    }
+}
+
+object FormDataUtil {
+
+    fun getBody(key: String, value: Any): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(key, value.toString())
+    }
+
+    fun getImageBody(key: String, file: File): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(
+            name = key,
+            filename = file.name,
+            body = file.asRequestBody("image/*".toMediaType())
+        )
+    }
+
+    fun getVideoBody(key: String, file: File): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(
+            name = key,
+            filename = file.name,
+            body = file.asRequestBody("video/*".toMediaType())
+        )
     }
 }

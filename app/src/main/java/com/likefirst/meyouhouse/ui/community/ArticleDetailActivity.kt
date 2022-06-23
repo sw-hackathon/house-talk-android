@@ -98,7 +98,6 @@ class ArticleDetailActivity :
             val userId = 1
             val comment = PostCommentResult(content,userId,postId.toInt())
 
-            //TODO 코맨트가 서버에 저장이 안됨 ㅠㅠ
             retrofitService.postComment(comment)
                 .enqueue(object : Callback<ResponseBody>{
                     override fun onResponse(
@@ -110,14 +109,11 @@ class ArticleDetailActivity :
                         binding.commentEditText.text.clear()
                         getDetailArticle()
                     }
-
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                         Log.d(TAG,t.message.toString())
                         showToast("네트워크 오류")
                     }
-
                 })
-
         }
     }
 

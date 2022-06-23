@@ -4,8 +4,11 @@ import com.likefirst.meyouhouse.data.dto.community.Article
 import com.likefirst.meyouhouse.data.dto.community.Articles
 import com.likefirst.meyouhouse.data.dto.community.DetailArticle
 import com.likefirst.meyouhouse.data.dto.community.PostCommentResult
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface RetrofitInterface {
@@ -40,4 +43,14 @@ interface RetrofitInterface {
     //Community Detail comment post
     @POST("/api/community/comment")
     fun postComment(@Body comment : PostCommentResult) : Call<ResponseBody>
+
+    // Community article post
+    @Multipart
+    @POST("/api/community")
+    fun postCommunityArticle(
+        @Part ("userId") userId: MultipartBody.Part,
+        @Part ("homeId") homeId: MultipartBody.Part,
+        @Part ("content") content: MultipartBody.Part,
+        @Part imgs: ArrayList<MultipartBody.Part>?
+    ) : Call<ResponseBody>
 }
