@@ -22,21 +22,22 @@ class ClientOnboardingFragment1 :
         with(binding) {
             btnNext.setOnClickListener {
                 if (isNextBtnValid) {
-                    val code = binding.etCode.text.toString()
-                    ApplicationClass.retrofit.create(RetrofitInterface::class.java)
-                        .getHomeByCode(code).apply {
-                        enqueueUtil(
-                            onSuccess = {
-                                val home = it?.name
-                                val action = ClientOnboardingFragment1Directions.actionClientOnboardingFragment1ToClientOnboardingFragment2(home)
-                                findNavController().navigate(action)
-                            },
-                            onError = {
-                                Toast.makeText(requireContext(), "잘못된 코드입니다.", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-                        )
-                    }
+                    findNavController().navigate(R.id.action_clientOnboardingFragment1_to_clientOnboardingFragment2)
+//                    val code = binding.etCode.text.toString()
+//                    ApplicationClass.retrofit.create(RetrofitInterface::class.java)
+//                        .getHomeByCode(code).apply {
+//                        enqueueUtil(
+//                            onSuccess = {
+//                                val home = it?.name
+//                                val action = ClientOnboardingFragment1Directions.actionClientOnboardingFragment1ToClientOnboardingFragment2(home)
+//                                findNavController().navigate(action)
+//                            },
+//                            onError = {
+//                                Toast.makeText(requireContext(), "잘못된 코드입니다.", Toast.LENGTH_SHORT)
+//                                    .show()
+//                            }
+//                        )
+//                    }
                 }
             }
             clPrevious.setOnClickListener {
