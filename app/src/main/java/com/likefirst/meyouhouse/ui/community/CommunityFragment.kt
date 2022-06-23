@@ -5,6 +5,6 @@ import com.likefirst.meyouhouse.ui.BaseFragment
 
 class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommunityBinding::inflate) {
     override fun initAfterBinding() {
-        TODO("Not yet implemented")
+
     }
 }

@@ -14,4 +14,8 @@
     <color name="medium_gray">#acacac</color>
     <color name="border_gray">#e5e5e5</color>
     <color name="background">#F8F9FA</color>
+    <color name="calendar_red">#ff3d58</color>
+    <color name="gray">#747474</color>
+    <color name="bg">#ECECEC</color>
+    <color name="calendar_blue">#556fff</color>
 </resources>
