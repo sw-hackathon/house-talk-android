@@ -1,5 +1,6 @@
 package com.likefirst.meyouhouse.ui.calendar
 
+import android.content.Intent
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -103,11 +104,25 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(FragmentCalendarB
             adapter = uncompleted_adapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            uncompleted_adapter.setOnIssueSelectedListener(object : CalendarIssueRVAdapter.CalendarIssueSelectedListener{
+                override fun onIssueSelectedListener(id : Int) {
+                    val mIntent = Intent(requireContext(), IssueDetailActivity::class.java)
+                    mIntent.putExtra("id", id)
+                    startActivity(mIntent)
+                }
+            })
         }
         binding.calendarHappyRv.apply {
             adapter = completed_adapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            completed_adapter.setOnIssueSelectedListener(object : CalendarIssueRVAdapter.CalendarIssueSelectedListener{
+                override fun onIssueSelectedListener(id : Int) {
+                    val mIntent = Intent(requireContext(), IssueDetailActivity::class.java)
+                    mIntent.putExtra("id", id)
+                    startActivity(mIntent)
+                }
+            })
         }
     }
 

@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.calendar.IssueDetailActivity"/>
         <activity android:name=".ui.community.ArticlePostingActivity"/>
         <activity android:name=".ui.community.ArticleDetailActivity"/>
     </application>

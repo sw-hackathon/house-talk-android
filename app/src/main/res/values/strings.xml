@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MeYouHouse</string>
+    <string name="app_name">집톡</string>
   <string name="user_name_anonymous">익명</string>
   <string name="header_community">커뮤니티</string>
   <string name="header_posting">글쓰기</string>
