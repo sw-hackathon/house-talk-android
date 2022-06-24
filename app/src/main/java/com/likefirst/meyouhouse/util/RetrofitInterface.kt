@@ -10,12 +10,20 @@ import com.likefirst.meyouhouse.data.remote.calendar.response.CalendarResponse
 import com.likefirst.meyouhouse.data.remote.calendar.response.IssueComments
 import com.likefirst.meyouhouse.data.remote.calendar.response.IssueDetailResponse
 import com.likefirst.meyouhouse.data.remote.calendar.response.IssueResponse
+import com.likefirst.meyouhouse.data.remote.auth.GetHomeByCodeResponse
+import com.likefirst.meyouhouse.data.remote.auth.PostHomeRequest
+import com.likefirst.meyouhouse.data.remote.auth.PostHomeResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface RetrofitInterface {
     // Example
     // ------------------- UserAuth -------------------------- //
+    @GET("/auth/home/{code}")
+    fun getHomeByCode(@Path("code") code: String): Call<BaseResponse<GetHomeByCodeResponse>>
+
+    @POST("/auth/home")
+    fun postHome(@Body body: PostHomeRequest): Call<BaseResponse<PostHomeResponse>>
 //    @POST("/auth/google")
 //    fun login(@Body email: UserEmail) : Call<LoginResponse>
 //

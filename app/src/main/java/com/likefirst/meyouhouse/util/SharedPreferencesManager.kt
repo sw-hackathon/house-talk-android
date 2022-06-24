@@ -44,3 +44,23 @@ fun removeHost(){
     editor.remove("Authorization_host")
     editor.commit()
 }
+
+fun saveJwt(jwtToken: String) {
+    val editor = mSharedPreferences.edit()
+    editor.putString("jwt", jwtToken)
+    editor.apply()
+}
+
+fun saveRoom(room: String) {
+    val editor = mSharedPreferences.edit()
+    editor.putString("room", room)
+    editor.apply()
+}
+
+fun getJwt(): String? = mSharedPreferences.getString("jwt", null)
+
+fun removeJwt(){
+    val editor = mSharedPreferences.edit()
+    editor.remove("jwt")
+    editor.commit()
+}

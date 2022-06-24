@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.onboarding.SplashActivity">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="82dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="78dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:gravity="left"
+        android:includeFontPadding="false"
+        android:text="안녕하세요.\n집톡입니다."
+        android:textColor="@color/house_talk_black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+    <TextView
+        android:id="@+id/tv_purpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
+        android:text="이용 목적을 선택 해주세요 :)"
+        android:textColor="@color/house_talk_gray"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/tv_welcome"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_client"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/shape_bg_blue_btn"
+        android:fontFamily="@font/notosanskr_medium"
+        android:includeFontPadding="false"
+        android:paddingVertical="13dp"
+        android:text="임차인입니다!"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_host"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_client"
+        android:layout_marginStart="17dp"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintBottom_toBottomOf="@id/btn_client"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/btn_client"
+        app:layout_constraintTop_toTopOf="@id/btn_client" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_host"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="43dp"
+        android:background="@drawable/shape_bg_empty_btn"
+        android:fontFamily="@font/notosanskr_medium"
+        android:includeFontPadding="false"
+        android:paddingVertical="13dp"
+        android:text="임대인입니다!"
+        android:textColor="@color/house_talk_black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_host"
+        android:layout_marginStart="17dp"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="@id/btn_host"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@id/btn_host"
+        app:layout_constraintTop_toTopOf="@id/btn_host" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
