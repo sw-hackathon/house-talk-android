@@ -25,6 +25,8 @@ class IssueDetailActivity : BaseActivity<ActivityIssueDetailBinding>(ActivityIss
         binding.issueDetailDateTv.text = response.created_at
         binding.issueDetailTitleTv.text = response.title
         binding.issueDetailContentTv.text = response.content
+
+        val chattingAdapter = IssueDetailChattingRVAdapter(response.comments)
     }
 
     override fun getIssueDetailFailure(code: Int) {
