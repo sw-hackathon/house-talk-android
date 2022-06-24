@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_onboarding"
+    app:startDestination="@id/clientOnboardingFragment1">
+
+    <fragment
+        android:id="@+id/clientOnboardingFragment1"
+        android:name="com.likefirst.meyouhouse.ui.onboarding.client.ClientOnboardingFragment1"
+        android:label="ClientOnboardingFragment1">
+        <argument
+            android:name="home"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_clientOnboardingFragment1_to_clientOnboardingFragment2"
+            app:destination="@id/clientOnboardingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientOnboardingFragment2"
+        android:name="com.likefirst.meyouhouse.ui.onboarding.client.ClientOnboardingFragment2"
+        android:label="ClientOnboardingFragment2">
+        <argument
+            android:name="home"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_clientOnboardingFragment2_to_clientOnboardingFragment3"
+            app:destination="@id/clientOnboardingFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientOnboardingFragment3"
+        android:name="com.likefirst.meyouhouse.ui.onboarding.client.ClientOnboardingFragment3"
+        android:label="ClientOnboardingFragment3" />
+</navigation>

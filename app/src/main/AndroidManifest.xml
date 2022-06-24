@@ -2,15 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.likefirst.meyouhouse">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".util.ApplicationClass"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MeYouHouse">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.onboarding.host.HostOnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.client.ClientOnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,6 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.calendar.IssueDetailActivity"/>
+        <activity android:name=".ui.community.ArticlePostingActivity"/>
+        <activity android:name=".ui.community.ArticleDetailActivity"/>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

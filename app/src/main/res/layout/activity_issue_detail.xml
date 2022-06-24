@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/issue_detail_contents_sv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/issue_detail_chatting_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/issue_detail_header_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingVertical="20dp"
+                android:text="고장/수리요청"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/issue_detail_main_iv"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="30dp"
+                android:src="@drawable/ic_home_address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_header_tv" />
+
+            <TextView
+                android:id="@+id/issue_detail_address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="303호"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/issue_detail_main_iv"
+                app:layout_constraintTop_toTopOf="@id/issue_detail_main_iv" />
+
+            <TextView
+                android:id="@+id/issue_detail_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="06/23 00:00"
+                android:textColor="@color/gray"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/issue_detail_main_iv"
+                app:layout_constraintStart_toEndOf="@id/issue_detail_main_iv"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_address_tv" />
+
+            <TextView
+                android:id="@+id/issue_detail_is_completed_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/bg_activity_is_completed"
+                android:paddingVertical="15dp"
+                android:text="       이 문제가 해결되었나요?"
+                android:textColor="@color/calendar_blue"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_main_iv" />
+
+            <TextView
+                android:id="@+id/issue_detail_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="에어컨 고장"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/issue_detail_is_completed_tv"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_is_completed_tv" />
+
+            <TextView
+                android:id="@+id/issue_detail_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="에어컨이 고장났어요! 수리부탁해요"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/issue_detail_is_completed_tv"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_title_tv" />
+
+            <TextView
+                android:id="@+id/issue_detail_bottom_separator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="55dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/issue_detail_content_tv" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/issue_detail_chatting_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/issue_detail_bottom_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/issue_detail_chatting_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/issue_detail_contents_sv">
+
+        <EditText
+            android:id="@+id/issue_detail_chatting_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="채팅을 입력하세요"
+            android:background="@null"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/issue_detail_chatting_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/issue_detail_chatting_iv"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/ic_icon_comment_black"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

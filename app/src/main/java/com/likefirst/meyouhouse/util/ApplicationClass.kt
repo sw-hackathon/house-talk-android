@@ -3,6 +3,7 @@ package com.likefirst.meyouhouse.util
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.likefirst.meyouhouse.config.XAccessTokenInterceptor
 import okhttp3.OkHttpClient
@@ -15,13 +16,13 @@ import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
     companion object{
-        const val X_ACCESS_TOKEN: String = "x-access-token"         // JWT Token Key
+        const val X_ACCESS_TOKEN: String = "Authorization"         // JWT Token Key
         const val TAG: String = "MeYou-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val DEV_URL: String = "https://dev.euna.shop";       // 테스트 서버 주소
+        const val DEV_URL: String = "http://54.180.24.205";       // 테스트 서버 주소
         const val PROD_URL: String = "https://prod.euna.shop"    // 실서버 주소
-        const val BASE_URL: String = PROD_URL
+        const val BASE_URL: String = DEV_URL
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var retrofit: Retrofit
