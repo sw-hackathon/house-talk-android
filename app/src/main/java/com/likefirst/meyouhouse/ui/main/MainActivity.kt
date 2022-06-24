@@ -20,6 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, HomeFragment())
             .addToBackStack("homeFragment")
+            .호롤롤로
             .commitAllowingStateLoss()
 
 
