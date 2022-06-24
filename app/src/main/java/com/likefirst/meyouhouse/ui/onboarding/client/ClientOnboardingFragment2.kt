@@ -1,5 +1,7 @@
 package com.likefirst.meyouhouse.ui.onboarding.client
 
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.likefirst.meyouhouse.R
 import com.likefirst.meyouhouse.databinding.FragmentClientOnboarding2Binding
 import com.likefirst.meyouhouse.ui.BaseFragment
