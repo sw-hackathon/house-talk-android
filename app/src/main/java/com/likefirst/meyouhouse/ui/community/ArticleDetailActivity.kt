@@ -85,11 +85,8 @@ class ArticleDetailActivity :
                 override fun onFailure(call: Call<DetailArticle>, t: Throwable) {
                     showToast("데이터 불러오기 실패")
                 }
-
             })
-
     }
-
 
     private fun initCommentSubmitButton() {
         binding.commentSubmitButton.setOnClickListener {

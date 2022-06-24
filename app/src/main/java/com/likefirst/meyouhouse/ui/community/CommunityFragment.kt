@@ -86,7 +86,7 @@ class CommunityFragment : BaseFragment<FragmentCommunityBinding>(FragmentCommuni
 
     companion object {
         const val TAG = "CommunityFg"
-        const val BASE_URL = "http://52.78.12.56:8080/"
+        const val BASE_URL = "http://52.78.12.56:8080"
         const val POST_ID = "POST_ID"
         const val DATE = "DATE"
     }
